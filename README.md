@@ -15,7 +15,7 @@
 
     ```bash
     # change into project folder
-    cd RecruitingBot
+    cd recruiting-bot
     ```
 
 - Run the bot from a terminal or from Visual Studio, choose option A or B.
