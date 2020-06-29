@@ -13,6 +13,7 @@ namespace Beetroot.RecruitingBot.Scrapers.Converters
             Converters =
             {
                 new IsoDateTimeConverter {DateTimeStyles = DateTimeStyles.AssumeUniversal}
+                
             }
         };
     }
