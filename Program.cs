@@ -6,7 +6,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace RecrutingBot
+namespace Beetroot.RecruitingBot
 {
     public class Program
     {

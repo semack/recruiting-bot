@@ -3,6 +3,9 @@
 //
 // Generated with Bot Builder V4 SDK Template for Visual Studio EmptyBot v4.9.2
 
+using Beetroot.RecruitingBot.Bots;
+using Beetroot.RecruitingBot.Dialogs;
+using Beetroot.RecruitingBot.Settings;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Bot.Builder;
@@ -11,7 +14,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace RecrutingBot
+namespace Beetroot.RecruitingBot
 {
     public class Startup
     {
@@ -25,13 +28,27 @@ namespace RecrutingBot
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddOptions<RabotaUaApiSettings>()
+                .Configure(options => Configuration.GetSection("RabotaUa"));
+            
             services.AddControllers().AddNewtonsoftJson();
 
             // Create the Bot Framework Adapter with error handling enabled.
             services.AddSingleton<IBotFrameworkHttpAdapter, AdapterWithErrorHandler>();
+            
+            services.AddSingleton<IStorage, MemoryStorage>();
+            
+            // Create the User state. (Used in this bot's Dialog implementation.)
+            services.AddSingleton<UserState>();
+
+            // Create the Conversation state. (Used by the Dialog system itself.)
+            services.AddSingleton<ConversationState>();
+
+            // The MainDialog that will be run by the bot.
+            services.AddSingleton<MainDialog>();
 
             // Create the bot as a transient. In this case the ASP Controller is expecting an IBot.
-            services.AddTransient<IBot, EmptyBot>();
+            services.AddTransient<IBot, RecruiterBot<MainDialog>>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
