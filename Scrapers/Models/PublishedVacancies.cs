@@ -4,7 +4,7 @@ using System.Globalization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace Beetroot.RecruitingBot.Models
+namespace Beetroot.RecruitingBot.Scrapers.Models
 {
     public partial class PublishedVacancies
     {

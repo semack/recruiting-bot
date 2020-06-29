@@ -1,14 +1,13 @@
-using System;
 using System.Net.Http;
 using System.Net.NetworkInformation;
 using System.Threading.Tasks;
-using Beetroot.RecruitingBot.Models;
-using Beetroot.RecruitingBot.Scrappers.Abstractions;
+using Beetroot.RecruitingBot.Scrapers.Abstractions;
+using Beetroot.RecruitingBot.Scrapers.Models;
 using Beetroot.RecruitingBot.Settings;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace Beetroot.RecruitingBot.Scrappers
+namespace Beetroot.RecruitingBot.Scrapers
 {
     public class RabotaUaScraper : IScraper
     {

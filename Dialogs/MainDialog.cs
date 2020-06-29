@@ -1,5 +1,5 @@
-using Beetroot.RecruitingBot.Scrappers;
-using Beetroot.RecruitingBot.Scrappers.Abstractions;
+using Beetroot.RecruitingBot.Scrapers;
+using Beetroot.RecruitingBot.Scrapers.Abstractions;
 using Beetroot.RecruitingBot.Settings;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Extensions.Logging;

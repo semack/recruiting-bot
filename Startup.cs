@@ -6,8 +6,8 @@
 using System.Net.Http;
 using Beetroot.RecruitingBot.Bots;
 using Beetroot.RecruitingBot.Dialogs;
-using Beetroot.RecruitingBot.Scrappers;
-using Beetroot.RecruitingBot.Scrappers.Abstractions;
+using Beetroot.RecruitingBot.Scrapers;
+using Beetroot.RecruitingBot.Scrapers.Abstractions;
 using Beetroot.RecruitingBot.Settings;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
