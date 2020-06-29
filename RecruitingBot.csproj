@@ -19,4 +19,13 @@
     </Content>
   </ItemGroup>
 
+    <ItemGroup>
+      <Content Remove="Cards\welcomeCard.json" />
+      <EmbeddedResource Include="Cards\welcomeCard.json">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </EmbeddedResource>
+    </ItemGroup>
+
 </Project>

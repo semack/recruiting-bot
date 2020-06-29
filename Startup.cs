@@ -3,8 +3,10 @@
 //
 // Generated with Bot Builder V4 SDK Template for Visual Studio EmptyBot v4.9.2
 
+using System.Net.Http;
 using Beetroot.RecruitingBot.Bots;
 using Beetroot.RecruitingBot.Dialogs;
+using Beetroot.RecruitingBot.Scrappers;
 using Beetroot.RecruitingBot.Settings;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -29,7 +31,7 @@ namespace Beetroot.RecruitingBot
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddOptions<RabotaUaApiSettings>()
-                .Configure(options => Configuration.GetSection("RabotaUa"));
+                .Configure(options => Configuration.GetSection("RabotaUa").Bind(options));
             
             services.AddControllers().AddNewtonsoftJson();
 
@@ -49,6 +51,9 @@ namespace Beetroot.RecruitingBot
 
             // Create the bot as a transient. In this case the ASP Controller is expecting an IBot.
             services.AddTransient<IBot, RecruiterBot<MainDialog>>();
+
+            services.AddTransient<HttpClient>();
+            services.AddTransient<RabotaUaScrapper>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
