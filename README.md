@@ -1,8 +1,4 @@
-﻿# RecrutingBot
-
-Bot Framework v4 empty bot sample.
-
-This bot has been created using [Bot Framework](https://dev.botframework.com), it shows the minimum code required to build a bot.
+﻿# RecruitingBot
 
 ## Prerequisites
 
@@ -15,11 +11,11 @@ This bot has been created using [Bot Framework](https://dev.botframework.com), i
 
 ## To try this sample
 
-- In a terminal, navigate to `RecrutingBot`
+- In a terminal, navigate to `RecruitingBot`
 
     ```bash
     # change into project folder
-    cd RecrutingBot
+    cd RecruitingBot
     ```
 
 - Run the bot from a terminal or from Visual Studio, choose option A or B.
@@ -35,8 +31,8 @@ This bot has been created using [Bot Framework](https://dev.botframework.com), i
 
   - Launch Visual Studio
   - File -> Open -> Project/Solution
-  - Navigate to `RecrutingBot` folder
-  - Select `RecrutingBot.csproj` file
+  - Navigate to `RecruitingBot` folder
+  - Select `RecruitingBot.csproj` file
   - Press `F5` to run the project
 
 ## Testing the bot using Bot Framework Emulator
