@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Beetroot.RecruitingBot.Scrapers.Models;
 
@@ -5,6 +6,9 @@ namespace Beetroot.RecruitingBot.Scrapers.Abstractions
 {
     public interface IScraper
     {
-        Task<PublishedVacancies> GetVacanciesAsync();
+        Task<PublishedVacancies> GetVacanciesAsync(string cityId = null);
+        Task<SingleVacancy> GetSingleVacancyAsync(string vacancyId);
+        Task<List<SingleCity>> GetCitiesAsync(string cityName);
+        Task<List<SingleCity>> GetCitiesHaveVacanciesAsync();
     }
 }

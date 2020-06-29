@@ -8,7 +8,7 @@ using Beetroot.RecruitingBot.Bots;
 using Beetroot.RecruitingBot.Dialogs;
 using Beetroot.RecruitingBot.Scrapers;
 using Beetroot.RecruitingBot.Scrapers.Abstractions;
-using Beetroot.RecruitingBot.Settings;
+using Beetroot.RecruitingBot.Scrapers.Settings;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Bot.Builder;
@@ -31,9 +31,8 @@ namespace Beetroot.RecruitingBot
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddOptions<ScraperSettings>()
-                .Configure(options => Configuration.GetSection("RabotaUa").Bind(options));
-            
+            services.Configure<ScraperSettings>(Configuration.GetSection("Scraper"));
+
             services.AddControllers().AddNewtonsoftJson();
 
             // Create the Bot Framework Adapter with error handling enabled.
@@ -54,7 +53,7 @@ namespace Beetroot.RecruitingBot
             services.AddTransient<IBot, RecruiterBot<MainDialog>>();
 
             services.AddTransient<HttpClient>();
-            services.AddTransient<IScraper, RabotaUaScraper>();
+            services.AddTransient<IScraper, Scraper>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
