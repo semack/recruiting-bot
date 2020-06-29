@@ -3,20 +3,21 @@ using System.Net.Http;
 using System.Net.NetworkInformation;
 using System.Threading.Tasks;
 using Beetroot.RecruitingBot.Models;
+using Beetroot.RecruitingBot.Scrappers.Abstractions;
 using Beetroot.RecruitingBot.Settings;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
 namespace Beetroot.RecruitingBot.Scrappers
 {
-    public class RabotaUaScrapper
+    public class RabotaUaScraper : IScraper
     {
         private readonly HttpClient _client;
-        private readonly RabotaUaApiSettings _settings;
-        private readonly ILogger<RabotaUaScrapper> _logger;
+        private readonly ScraperSettings _settings;
+        private readonly ILogger<RabotaUaScraper> _logger;
 
-        public RabotaUaScrapper(HttpClient client, IOptions<RabotaUaApiSettings> options,
-            ILogger<RabotaUaScrapper> logger)
+        public RabotaUaScraper(HttpClient client, IOptions<ScraperSettings> options,
+            ILogger<RabotaUaScraper> logger)
         {
             _client = client;
             _settings = options?.Value;
