@@ -44,7 +44,7 @@ namespace Beetroot.RecruitingBot.Scrapers.Models
 
         [JsonProperty("isApply")] public bool IsApply { get; set; }
 
-        [JsonProperty("applyDate")] public DateTimeOffset ApplyDate { get; set; }
+        [JsonProperty("applyDate")] public DateTimeOffset? ApplyDate { get; set; }
 
         [JsonProperty("isApplyViewed")] public bool IsApplyViewed { get; set; }
 
