@@ -2,6 +2,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Beetroot.RecruitingBot.Scrapers.Abstractions;
+using Html2Markdown;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.Dialogs.Choices;
@@ -13,11 +14,13 @@ namespace Beetroot.RecruitingBot.Dialogs
     public class MainDialog : ComponentDialog
     {
         private readonly IScraper _scrapper;
+        private readonly ILogger<MainDialog> _logger;
 
         public MainDialog(IScraper scrapper, ILogger<MainDialog> logger)
             : base(nameof(MainDialog))
         {
             _scrapper = scrapper;
+            _logger = logger;
             Dialogs.Add(new ConfirmPrompt(nameof(ConfirmPrompt)));
             Dialogs.Add(new ChoicePrompt(nameof(ChoicePrompt)));
             Dialogs.Add(new AttachmentPrompt(nameof(AttachmentPrompt)));
@@ -72,7 +75,7 @@ namespace Beetroot.RecruitingBot.Dialogs
                         }
                     )
                     .ToList(),
-                Style = ListStyle.Auto
+                Style = ListStyle.HeroCard
             };
             return await stepContext.PromptAsync(nameof(ChoicePrompt), options, cancellationToken);
         }
@@ -110,7 +113,23 @@ namespace Beetroot.RecruitingBot.Dialogs
         {
             var vacancyId = (stepContext.Result as FoundChoice)?.Value;
             var vacancy = await _scrapper.GetSingleVacancyAsync(vacancyId);
-            return await stepContext.EndDialogAsync(cancellationToken: cancellationToken);
+            var markDown = new ReverseMarkdown.Converter().Convert(vacancy.Description);
+            var messageText = stepContext.Options?.ToString() ??
+                              "Please choose vacancy you interested in:";
+            
+            var promptMessage = MessageFactory.Text(markDown, markDown, InputHints.AcceptingInput);
+            promptMessage.TextFormat = "markdown";
+            var options = new PromptOptions
+            {
+                Prompt = promptMessage,
+                RetryPrompt =
+                    MessageFactory.Text("Sorry, I did not understand. Do you want me to continue this conversation?"),
+                Style = ListStyle.HeroCard
+            };
+            return await stepContext.PromptAsync(nameof(ChoicePrompt), options, cancellationToken);
+            
+           // return await stepContext.EndDialogAsync(cancellationToken: cancellationToken);
+            
         }
     }
 }
